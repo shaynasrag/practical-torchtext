@@ -92,6 +92,8 @@ class SimpleBiLSTMBaseline(nn.Module):
     
     def forward(self, seq):
         hdn, _ = self.encoder(self.embedding(seq))
+        print("HIDDEN: ", hdn.size())
+      #   print("_________: ", _[
         feature = hdn[-1, :, :]
         print("FEATURE: ", feature.size())
         for layer in self.linear_layers:
@@ -120,8 +122,8 @@ for epoch in range(1, epochs + 1):
         opt.zero_grad()
 
         preds = model(x)
-        print("THIS IS PREDS: ", preds.size())
-        print("THIS IS Y: ", y.size())
+        print("THIS IS PREDS: ", preds)
+        print("THIS IS Y: ", y)
         exit()
         loss = loss_func(preds, y)
         loss.backward()
